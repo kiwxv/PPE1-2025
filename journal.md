@@ -5,3 +5,17 @@ Pour voir que le projet n'est plus à jour j'essaie "git status" mais elle me do
 
 ## Exo pour 15/10
 J'ai push le tag de l'exercice 1 fait en cours. Pour l'exercice 2 j'ai crée un script qui allait chercher un par un chaque type d'annotation dans le dossier 2016. Pour la deuxième partie ce script ne me semblait pas exploitable, j'ai donc crée un deuxième script qui part du principe qu'il est exécuté directement dans le bon dossier (il ne va donc pas chercher cat `Exercice1/ann/2016` mais directment * pour prendre tous les fichiers de son dossier). Je nomme ce deuxième script "copie". Ensuite je crée le script principal compte_par_type_par_an.sh qui va lui même se rendre dans les bons dossiers avec un cd avant d'exécuter le script copie. Ce script permet de se déplacer dans les 3 fichiers 2016-2017-2018 et d'y éxécuter à chaque fois la même recherche. Ensuite je sépare les résultats avec 3 echo pour essayer de rendre ça plus lisible.
+
+## Mini-projet
+### Questions :
+
+1. Pourquoi ne pas utiliser cat ?
+Utiliser `while read -r line` permet de tokeniser le texte en mot alors que `cat` prendrait seulement le texte dans son entièreté
+
+2. Comment transformer "urls/fr.txt" en paramètre du script ?
+Pour transformer "urls/fr.txt" en paramètre de script on le remplace par $1.
+    2.1 Valider l’argument : ajouter le code nécessaire pour s’assurer qu’on donne bien un argument au script, sinon on s’arrête
+
+3. Comment afficher le numéro de ligne avant chaque URL (sur la même ligne) ?
+• Bien séparer les valeurs par des tabulations
+Pour afficher le numéro de ligne avant chaque URL j'initialise une variable "ligne" à laquelle j'ajoute 1 pour chaque boucle. Je rajoute cette boucle et la tabulation dans le echo

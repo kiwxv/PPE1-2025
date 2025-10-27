@@ -1,8 +1,11 @@
 #!/usr/bin/bash
 
-echo "Nombre de location en 2016 :"
-cat Exercice1/ann/2016/* | grep Location | wc -l
-echo "Nombre de location en 2017 :"
-cat Exercice1/ann/2017/* | grep Location | wc -l
-echo "Nombre de location en 2018 :"             
-cat Exercice1/ann/2018/* | grep Location | wc -l
+nombre=2016
+while nombre<2018
+do
+    echo "Nombre de location en $nombre :"
+    cat Exercice1/ann/$nombre/* | grep Location | wc -l
+    nombre+=1
+done
+
+
