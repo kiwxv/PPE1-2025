@@ -1,17 +1,19 @@
 #!/usr/bin/bash
 
 #Pour vérifier que l'utilisateur a bien entré un argument
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 	then
-	echo "Ce programme demande un argument."
+	echo "Ce programme demande deux arguments."
 	exit
 fi
 
 #initialisation d'une variable comptant les lignes
 compteur=1
 
+SORTIE=$2
+
 #on crée le fichier dans lequel va être stocké notre résultat
->../tableaux/tableau-fr.tsv
+>$2
 
 while read -r line;
 do
@@ -32,7 +34,7 @@ do
 	mots=$(echo "$contenu"| wc -w)
 
 	#echo de toutes nos infos
-	echo -e "${compteur}" "\t" "$code" "\t" "$encodage" "\t" "$mots" "\t" "${line}" >> ../tableaux/tableau-fr.tsv
+	echo -e "${compteur}" "\t" "$code" "\t" "$encodage" "\t" "$mots" "\t" "${line}" >> $2
 	#incrémentation compteur
 	compteur=$((compteur + 1))
 	#pour éviter de recevoir le code 429 "too many request" j'impose un temps de latence d'une seconde entre les requêtes
