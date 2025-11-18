@@ -26,3 +26,5 @@ Pour créer mon fichier html j'ai décidé de ne pas ajouter de ligne header qui
 ## Mini-projet 3
 J'ai réuni les 2 scripts en un seul pour éviter d'avoir à faire deux exécutions à chaque fois. J'ai aussi rajouté des échos qui expliquent à quel étape le traitement en est, sinon c'est vide en attendant.
 J'ai rajouté du style bulma sur mon code html, je ne sais pas s'il fallait le rajouter directement dans le script aussi.
+Je l'ai ajouté dans le script.
+

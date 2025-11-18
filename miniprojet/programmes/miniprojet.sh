@@ -51,23 +51,44 @@ echo "Création du fichier html..."
 {
 echo "<html>"
 echo "  <head>"
-echo "          <meta charset="UTF-8" />"
+echo "          <meta charset=\"UTF-8\" />"
+echo "           <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css\" />"
+echo "          <style>
+          body {
+            font-family: Arial, sans-serif; }
+          </style>"
 echo "  </head>"
 echo "  <body>"
-echo "      <table>"
-
+echo "   <article class=\"message is-dark is small\">
+  <div class=\"message-body\">
+    Bienvenue sur ce site. Vous y trouverez les résultats des extractions de données du mini-projet 1.
+  </div>
+</article>
+<div class=\"container\">
+<h2 class=\"title is-2 has-text-centered\">Tableaux analyse URLS</h2>"
+echo "      <table class=\"table is-striped is-fullwidth is-bordered is-hoverable is-narrow\">"
 
 #on précise que les colonnes sont marquées par des tabulation avec IFS=$"\t"
 echo "$TSV" | while IFS=$'\t' read -r -a colonne;
 do
-    echo "          <tr>"
-    for col in "${colonne[@]}";
-    do
-      echo "                <td>${col}</td>"
-    done
-    echo "          </tr>"
+	if [[ "${colonne[0]}" == "Ligne" ]]; then
+        echo "          <thead><tr class=\"has-background-light\">"
+        for col in "${colonne[@]}";
+        do
+          echo "                <th>${col}</th>"
+        done
+        echo "          </tr></thead><tbody>"
+	else
+		echo "          <tr>"
+		for col in "${colonne[@]}";
+		do
+			echo "                <td>${col}</td>"
+		done
+		echo "          </tr>"
+	fi
 done
 echo "      </table>"
+echo " 		</div>"
 echo "  </body>"
 echo "</html>"
 } >"$SORTIE"
