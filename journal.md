@@ -19,3 +19,10 @@ Pour transformer "urls/fr.txt" en paramètre de script on le remplace par $1.
 3. Comment afficher le numéro de ligne avant chaque URL (sur la même ligne) ?
 • Bien séparer les valeurs par des tabulations
 Pour afficher le numéro de ligne avant chaque URL j'initialise une variable "ligne" à laquelle j'ajoute 1 pour chaque boucle. Je rajoute cette boucle et la tabulation dans le echo
+
+## Mini-projet 2
+Pour créer mon fichier html j'ai décidé de ne pas ajouter de ligne header qui donne des information sur ce que contiennent les colonnes, puisqu'il n'y en avait pas dans mon fichier initial. Si besoin j'ajouterai cette ligne dans le futur. J'ai aussi décidé de créer un nouveau script qui transforme le tsv en html, mais au besoin je pourrai aussi créer un script qui effectue directement ces deux scripts sur le même fichier pour ne pas avoir à lancer manuellement les deux scripts à chaque fois.
+
+## Mini-projet 3
+J'ai réuni les 2 scripts en un seul pour éviter d'avoir à faire deux exécutions à chaque fois. J'ai aussi rajouté des échos qui expliquent à quel étape le traitement en est, sinon c'est vide en attendant.
+J'ai rajouté du style bulma sur mon code html, je ne sais pas s'il fallait le rajouter directement dans le script aussi.

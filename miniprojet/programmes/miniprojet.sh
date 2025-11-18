@@ -15,6 +15,10 @@ SORTIE=$2
 #on crée le fichier dans lequel va être stocké notre résultat
 >$2
 
+#on crée une variable qui va stocker nos données extraites dans un tableau pour les traiter ensuite
+TSV+=$'Ligne\tCode_HTTP\tEncodage\tMots\tURL\n'
+
+echo "Traitement des urls..."
 while read -r line;
 do
 	#pour un des lien on a un soucis de redirection, donc on ajoute -L, avec -I on ne récupère que l'entête du site
@@ -33,10 +37,39 @@ do
 
 	mots=$(echo "$contenu"| wc -w)
 
-	#echo de toutes nos infos
-	echo -e "${compteur}" "\t" "$code" "\t" "$encodage" "\t" "$mots" "\t" "${line}" >> $2
+	#on ajoute nos infos dans la varibale TSV
+	TSV+="${compteur}"$'\t'"${code}"$'\t'"${encodage}"$'\t'"${mots}"$'\t'"${line}"$'\n'
+
+	echo "Url $compteur traité"
 	#incrémentation compteur
 	compteur=$((compteur + 1))
 	#pour éviter de recevoir le code 429 "too many request" j'impose un temps de latence d'une seconde entre les requêtes
 	sleep 1
 done < "$1";
+
+echo "Création du fichier html..."
+{
+echo "<html>"
+echo "  <head>"
+echo "          <meta charset="UTF-8" />"
+echo "  </head>"
+echo "  <body>"
+echo "      <table>"
+
+
+#on précise que les colonnes sont marquées par des tabulation avec IFS=$"\t"
+echo "$TSV" | while IFS=$'\t' read -r -a colonne;
+do
+    echo "          <tr>"
+    for col in "${colonne[@]}";
+    do
+      echo "                <td>${col}</td>"
+    done
+    echo "          </tr>"
+done
+echo "      </table>"
+echo "  </body>"
+echo "</html>"
+} >"$SORTIE"
+
+echo "Fichier crée à : $2"
